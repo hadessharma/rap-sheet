@@ -4,22 +4,24 @@ const Home: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleLogin = () => {
     console.log(username);
+    console.log(password);
   };
   return (
     <div className="flex flex-col justify-center h-screen items-center">
-      <div className="p-4">
-        <p className="text-3xl font-bold">LogIn</p>
-      </div>
-      <div className="border border-black rounded-xl">
+      <div className="border border-black rounded-xl px-10 py-24">
+        <div className="p-4 text-center">
+          <p className="text-3xl font-bold">LogIn</p>
+        </div>
         <div className="p-3 flex flex-col">
-          <label htmlFor="username">User</label>
+          <label htmlFor="username" className="">
+            User
+          </label>
           <input
             type="text"
             id="username"
-            className="border border-black"
+            className="border border-black text-xl"
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
@@ -28,14 +30,15 @@ const Home: React.FC = () => {
           <input
             type="password"
             id="password"
-            className="border border-black"
+            className="border border-black text-xl"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="p-1 flex justify-center">
+        <div className="pt-4 mt-2 flex justify-center">
           <button
             type="submit"
-            className="bg-blue-400 border-black border w-24"
+            className="bg-blue-400 border-black border w-24 p-2"
+            onClick={handleLogin}
           >
             SignIn
           </button>
