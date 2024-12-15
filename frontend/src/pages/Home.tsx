@@ -1,12 +1,23 @@
 import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import auth from "../auth/firebase";
 
 const Home: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    console.log(username);
-    console.log(password);
+  const handleSignUp = () => {
+    createUserWithEmailAndPassword(auth, username, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
   return (
     <div className="flex flex-col justify-center h-screen items-center">
@@ -34,13 +45,19 @@ const Home: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="pt-4 mt-2 flex justify-center">
+        <div className="pt-4 mt-2 flex justify-center space-x-2">
           <button
             type="submit"
             className="bg-blue-400 border-black border w-24 p-2"
-            onClick={handleLogin}
+            onClick={() => console.log("clicked")}
           >
             SignIn
+          </button>
+          <button
+            className="bg-blue-400 border border-black w-24 p-2"
+            onClick={handleSignUp}
+          >
+            New User?
           </button>
         </div>
       </div>
