@@ -9,8 +9,13 @@ interface UserState {
   user: User | null;
 }
 
+const loadUserFromStorage = (): User | null => {
+  const storedUser = localStorage.getItem("user");
+  return storedUser ? JSON.parse(storedUser) : null;
+};
+
 const initialState: UserState = {
-  user: null,
+  user: loadUserFromStorage(),
 };
 
 export const userSlice = createSlice({
@@ -19,9 +24,11 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     clearUser: (state) => {
       state.user = null;
+      localStorage.removeItem("user");
     },
   },
 });
