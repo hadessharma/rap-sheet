@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth, signOutUser } from "../auth/firebase";
 import { useAppDispatch, useAppSelector } from "../store/storehooks";
 import { setUser, selectUser } from "../store/features/userSlice";
@@ -28,6 +31,22 @@ const Home: React.FC = () => {
         console.log(errorCode, errorMessage);
       });
   };
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+
+        if (user.email) {
+          const name = user.email?.substring(0, 2);
+          dispatch(setUser({ email: user.email, name }));
+        }
+      })
+      .catch((error) => {
+        console.log(error.code, error.message);
+      });
+  };
+
   return (
     <div className="flex flex-col justify-center h-screen items-center">
       <div className="border border-black rounded-xl px-10 py-24">
@@ -58,9 +77,9 @@ const Home: React.FC = () => {
           <button
             type="submit"
             className="bg-blue-400 border-black border w-24 p-2"
-            onClick={() => console.log("clicked")}
+            onClick={handleLogin}
           >
-            SignIn
+            LogIn
           </button>
           <button
             className="bg-blue-400 border border-black w-24 p-2"
@@ -68,7 +87,7 @@ const Home: React.FC = () => {
           >
             New User?
           </button>
-          <button onClick={() => console.log(user)}>check!</button>
+          {/* <button onClick={() => console.log(user)}>check!</button> */}
         </div>
       </div>
     </div>
