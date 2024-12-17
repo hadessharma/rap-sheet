@@ -1,17 +1,26 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, signOutUser } from "../auth/firebase";
+import { useAppDispatch, useAppSelector } from "../store/storehooks";
+import { setUser, selectUser } from "../store/features/userSlice";
 
 const Home: React.FC = () => {
-  const [username, setUsername] = useState("");
+  const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
+
   const handleSignUp = () => {
-    createUserWithEmailAndPassword(auth, username, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user);
+
+        if (user.email) {
+          const name = user.email.substring(0, 2);
+          dispatch(setUser({ email: user.email, name }));
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -59,6 +68,7 @@ const Home: React.FC = () => {
           >
             New User?
           </button>
+          <button onClick={() => console.log(user)}>check!</button>
         </div>
       </div>
     </div>
