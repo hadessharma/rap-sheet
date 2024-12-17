@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { auth, signOutUser } from "../auth/firebase";
 import { useAppDispatch, useAppSelector } from "../store/storehooks";
-import { setUser, selectUser } from "../store/features/userSlice";
+import { setUser, selectUser, clearUser } from "../store/features/userSlice";
 
 const Home: React.FC = () => {
   const [email, setUsername] = useState("");
@@ -45,6 +45,11 @@ const Home: React.FC = () => {
       .catch((error) => {
         console.log(error.code, error.message);
       });
+  };
+
+  const handleSignOut = () => {
+    signOutUser();
+    dispatch(clearUser());
   };
 
   return (
@@ -92,7 +97,15 @@ const Home: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div>Logged in as {user.email}</div>
+        <div className="border border-black rounded-xl px-10 py-24 flex flex-col justify-center items-center">
+          <p className="text-xl">Logged in as {user.email}.</p>
+          <button
+            className="bg-blue-400 border border-black w-24 p-2 mt-4"
+            onClick={handleSignOut}
+          >
+            Log Out
+          </button>
+        </div>
       )}
     </div>
   );
