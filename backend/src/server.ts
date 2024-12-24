@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { dbConnect } from "./database/db";
@@ -13,6 +13,8 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello World!");
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
