@@ -1,33 +1,27 @@
-import {
-  DataType,
-  DataTypes,
-  Model,
-  Optional,
-  Sequelize,
-  UUIDV4,
-} from "sequelize";
+import { DataTypes, Model, Optional, UUIDV4 } from "sequelize";
 
 import { sequelize } from "../db";
 interface ConvictAttributes {
-  id: string;
+  convictID: number;
   name: string;
 }
 
-interface ConvictCreateAttributes extends Optional<ConvictAttributes, "id"> {}
+interface ConvictCreationAttributes
+  extends Optional<ConvictAttributes, "convictID"> {}
 
 class Convict
-  extends Model<ConvictAttributes, ConvictCreateAttributes>
+  extends Model<ConvictAttributes, ConvictCreationAttributes>
   implements ConvictAttributes
 {
-  public id!: string;
+  public convictID!: number;
   public name!: string;
 }
 
 Convict.init(
   {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: UUIDV4,
+    convictID: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
     name: {
@@ -43,4 +37,4 @@ Convict.init(
   }
 );
 
-export { Convict, ConvictAttributes, ConvictCreateAttributes };
+export { Convict, ConvictAttributes, ConvictCreationAttributes };
