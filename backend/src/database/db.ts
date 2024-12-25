@@ -1,7 +1,10 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 import path from "path";
-import exp from "constants";
+
+import { Convict } from "./models/convict";
+import { Infraction } from "./models/infractions";
+import { error } from "console";
 
 const isRunningInBuild = __dirname.includes("build");
 
@@ -23,12 +26,15 @@ const sequelize = new Sequelize(process.env.DATABASE_URL!, {
 });
 
 const dbConnect = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("DB Connected!");
-  } catch (error) {
-    console.log("Error:", error);
-  }
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log("DB Connected!");
+      return sequelize.sync();
+    })
+    .catch((error) => {
+      console.log("Error:", error);
+    });
 };
 
 export { dbConnect, sequelize };
