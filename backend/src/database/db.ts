@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 import path from "path";
+import exp from "constants";
 
 const isRunningInBuild = __dirname.includes("build");
 
@@ -21,7 +22,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL!, {
   logging: false,
 });
 
-export const dbConnect = async () => {
+const dbConnect = async () => {
   try {
     await sequelize.authenticate();
     console.log("DB Connected!");
@@ -29,3 +30,5 @@ export const dbConnect = async () => {
     console.log("Error:", error);
   }
 };
+
+export { dbConnect, sequelize };
