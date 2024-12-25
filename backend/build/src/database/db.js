@@ -16,7 +16,11 @@ exports.dbConnect = void 0;
 const sequelize_1 = require("sequelize");
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
-dotenv_1.default.config({ path: path_1.default.resolve(process.cwd(), "./.env") });
+const isRunningInBuild = __dirname.includes("build");
+const envPath = isRunningInBuild
+    ? path_1.default.resolve(process.cwd(), "../.env")
+    : path_1.default.resolve(process.cwd(), "./.env");
+dotenv_1.default.config({ path: envPath });
 const sequelize = new sequelize_1.Sequelize(process.env.DATABASE_URL, {
     dialect: "postgres",
     dialectOptions: {

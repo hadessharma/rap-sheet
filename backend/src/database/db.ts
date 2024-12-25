@@ -2,7 +2,13 @@ import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
 import path from "path";
 
-dotenv.config({ path: path.resolve(process.cwd(), "./.env") });
+const isRunningInBuild = __dirname.includes("build");
+
+const envPath = isRunningInBuild
+  ? path.resolve(process.cwd(), "../.env")
+  : path.resolve(process.cwd(), "./.env");
+
+dotenv.config({ path: envPath });
 
 const sequelize = new Sequelize(process.env.DATABASE_URL!, {
   dialect: "postgres",

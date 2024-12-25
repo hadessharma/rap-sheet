@@ -6,7 +6,8 @@
     "clean": "rimraf ./build",
     "build": "npm run clean && tsc",
     "start": "node src",
-    "dev": "ts-node src"
+    "dev": "ts-node src",
+    "dev:watch": "nodemon src -e ts,json --exec \"npm run dev\""
   },
   "keywords": [],
   "author": "",
