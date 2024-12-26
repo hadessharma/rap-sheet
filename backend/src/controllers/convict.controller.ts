@@ -5,6 +5,12 @@ interface CreateConvictRequest {
   name: string;
 }
 
+/**
+ *
+ * @param req
+ * @param res
+ * @returns
+ */
 export const createConvict = async (
   req: Request<{}, {}, CreateConvictRequest>,
   res: Response
@@ -22,5 +28,24 @@ export const createConvict = async (
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: "Failed to create convict!" });
+  }
+};
+
+/**
+ *
+ * @param req
+ * @param res
+ * @returns
+ */
+export const getAllConvicts = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  try {
+    const convicts = await Convict.findAll();
+    return res.status(201).json(convicts);
+  } catch (error) {
+    console.log("Error:", error);
+    return res.status(500).json({ error: "Failed to fetch data!" });
   }
 };

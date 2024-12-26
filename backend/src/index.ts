@@ -5,6 +5,7 @@ import { dbConnect } from "./database/db";
 import path from "path";
 
 import postRouter from "./routes/postRouter";
+import getRouter from "./routes/getRouter";
 
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
@@ -16,7 +17,8 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/", postRouter);
+app.use("/api/create", postRouter);
+app.use("/api/get", getRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
