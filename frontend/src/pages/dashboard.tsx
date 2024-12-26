@@ -3,6 +3,7 @@ import { useAppSelector } from "../store/storehooks";
 import { selectUser } from "../store/features/userSlice";
 import { Link } from "react-router-dom";
 import { getAllConvicts } from "../functions/get";
+import Entry from "../components/entry";
 
 const Dashboard: React.FC = () => {
   const user = useAppSelector(selectUser);
@@ -18,10 +19,15 @@ const Dashboard: React.FC = () => {
           <Link to="/">LogIn</Link>
         </div>
       ) : (
-        <div>
-          <div>Here's your Dashboard!</div>
-          <button onClick={getData}>Get!</button>
-        </div>
+        <>
+          <div>
+            <div>Here's your Dashboard!</div>
+            <button onClick={getData}>Get!</button>
+          </div>
+          <div className="pt-4">
+            <Entry />
+          </div>
+        </>
       )}
     </>
   );
