@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -14,6 +15,11 @@ const Home: React.FC = () => {
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
+  const navigate = useNavigate();
+  const goToDashboard = () => {
+    navigate("/dashboard");
+  };
+
   const handleSignUp = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -23,6 +29,7 @@ const Home: React.FC = () => {
         if (user.email) {
           const name = user.email.substring(0, 2);
           dispatch(setUser({ email: user.email, name }));
+          goToDashboard();
         }
       })
       .catch((error) => {
@@ -40,6 +47,7 @@ const Home: React.FC = () => {
         if (user.email) {
           const name = user.email?.substring(0, 2);
           dispatch(setUser({ email: user.email, name }));
+          goToDashboard();
         }
       })
       .catch((error) => {
