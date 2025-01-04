@@ -1,23 +1,12 @@
 import React, { useState } from "react";
 import { createConvict } from "../functions/post";
 import ConvictForm from "./forms/convictForm";
+import InfractionForm from "./forms/infractionForm";
 
 type EntryType = "convict" | "infraction" | "";
 
 const Entry: React.FC = () => {
   const [entryType, setEntryType] = useState<EntryType>("");
-  const [formData, setFormData] = useState<{ [key: string]: string }>();
-
-  const handleSubmit = () => {
-    try {
-      switch (entryType) {
-        case "convict":
-          createConvict(formData);
-      }
-    } catch (error) {
-      console.log("Err:", error);
-    }
-  };
 
   const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setEntryType(e.target.value as EntryType);
@@ -26,6 +15,8 @@ const Entry: React.FC = () => {
     switch (entryType) {
       case "convict":
         return <ConvictForm />;
+      case "infraction":
+        return <InfractionForm />;
     }
   };
   return (

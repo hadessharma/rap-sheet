@@ -50,7 +50,7 @@ Infraction.init(
       allowNull: false,
     },
     status: {
-      type: DataTypes.ENUM("Server", "Unserved"),
+      type: DataTypes.ENUM("Served", "Unserved"),
       allowNull: false,
     },
     timestamp: {
