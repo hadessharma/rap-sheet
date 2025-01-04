@@ -5,6 +5,7 @@ import { dbConnect } from "./database/db";
 import path from "path";
 
 import convictRouter from "./routes/convictRoutes";
+import infractionRouter from "./routes/infractionRoutes";
 
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/convicts", convictRouter);
+app.use("/api/infractions", infractionRouter);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
