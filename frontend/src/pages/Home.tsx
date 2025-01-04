@@ -113,6 +113,12 @@ const Home: React.FC = () => {
           >
             Log Out
           </button>
+          <button
+            className="bg-blue-400 border border-black w-24 p-2 mt-4"
+            onClick={goToDashboard}
+          >
+            Dashboard
+          </button>
         </div>
       )}
     </div>
