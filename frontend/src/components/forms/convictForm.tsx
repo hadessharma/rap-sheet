@@ -9,7 +9,7 @@ const ConvictForm: React.FC = () => {
     setName(e.target.value); // Update the state with the input value
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Prevent default form submission behavior
     try {
       if (!name) {
@@ -17,9 +17,12 @@ const ConvictForm: React.FC = () => {
         return;
       }
 
-      createConvict({ name });
-      alert("Convict created successfully!");
-      setName(""); // Clear the form after submission
+      const res: number = await createConvict({ name });
+      if (res == 1) {
+        setName("");
+      } else {
+        alert("Convict already exists!");
+      }
     } catch (error) {
       console.error("Error creating convict:", error);
       alert("There was an error creating the convict.");
