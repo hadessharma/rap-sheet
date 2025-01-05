@@ -28,7 +28,7 @@ export const createInfraction = async (
 ): Promise<number> => {
   try {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    const res = await axios.post(`${backendUrl}/api/infraction`, payload);
+    const res = await axios.post(`${backendUrl}/api/infractions`, payload);
     return 1;
   } catch (error) {
     console.log(error);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createInfraction } from "../../functions/post";
+import { createInfraction, infractionAttribute } from "../../functions/post";
 
 const InfractionForm: React.FC = () => {
   const [convictID, setConvictID] = useState<number>(0);
@@ -20,7 +20,20 @@ const InfractionForm: React.FC = () => {
     setTimestamp(new Date(e.target.value));
   };
 
-  const handleOnSubmit = () => {};
+  const handleOnSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (!convictID || !timestamp) {
+      return;
+    }
+    const data: infractionAttribute = {
+      convictID: convictID,
+      type: type,
+      status: status,
+      timestamp: timestamp!,
+    };
+
+    await createInfraction(data);
+  };
   return (
     <div>
       <form onSubmit={handleOnSubmit} className="flex flex-col items-center">
