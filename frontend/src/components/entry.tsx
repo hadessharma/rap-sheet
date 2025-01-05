@@ -21,20 +21,19 @@ const Entry: React.FC = () => {
   };
   return (
     <div className="flex justify-center">
-      <div className="border border-black p-4 rounded-xl">
-        <label className="p-2">
-          Entry Type:
+      <div className="flex flex-col items-center border border-black p-4 rounded-xl">
+        <div>
+          <label className="p-2 font-bold">Entry Type:</label>
           <select
             value={entryType}
             onChange={handleTypeChange}
-            className="border border-black m-2"
+            className="border border-black m-2 rounded-xl p-2"
           >
             <option value="">Select Type</option>
             <option value="convict">Convict</option>
             <option value="infraction">Infraction</option>
           </select>
-        </label>
-
+        </div>
         {entryType && (
           <div className="p-2 border rounded-xl border-black">
             {renderFields()}
