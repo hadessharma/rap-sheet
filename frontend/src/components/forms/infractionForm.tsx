@@ -20,9 +20,10 @@ const InfractionForm: React.FC = () => {
     setTimestamp(new Date(e.target.value));
   };
 
-  const handleOnSubmit = async (e: React.FormEvent<HTMLInputElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!convictID || !timestamp) {
+    if (!convictID || !timestamp || !type || !status) {
+      alert("Please check the form and submit again!");
       return;
     }
     const data: infractionAttribute = {
@@ -36,7 +37,7 @@ const InfractionForm: React.FC = () => {
   };
   return (
     <div>
-      <form onSubmit={handleOnSubmit} className="flex flex-col items-center">
+      <form onSubmit={handleSubmit} className="flex flex-col items-center">
         <div className="flex">
           <label>Convict ID:</label>
           <input
@@ -50,6 +51,7 @@ const InfractionForm: React.FC = () => {
         <div className="flex">
           <label>Type:</label>
           <select onChange={handleTypeChange} value={type}>
+            <option value="">Select Type</option>
             <option value="Speeding">Speeding</option>
             <option value="Excessive Speeding">Excessive Speeding</option>
             <option value="Reckless Driving">Reckless Driving</option>
@@ -65,6 +67,7 @@ const InfractionForm: React.FC = () => {
         <div className="flex">
           <label>Status:</label>
           <select value={status} onChange={handleStatusChange}>
+            <option value="">Select status</option>
             <option value="Served">Served</option>
             <option value="Unserved">Unserved</option>
           </select>

@@ -10,7 +10,7 @@ const ConvictForm: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
     try {
       if (!name) {
         alert("Name cannot be empty!");
