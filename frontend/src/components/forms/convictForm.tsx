@@ -32,19 +32,20 @@ const ConvictForm: React.FC = () => {
   return (
     <div className="">
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
-        <label className="p-2">
-          Name:
+        <div className="">
+          <label className="p-2 font-bold">Name:</label>
           <input
             name="name"
             type="text"
             value={name} // Bind the input value to the state
-            className="m-2 border border-black font-normal"
+            className="m-2 border border-black p-3 rounded-xl"
             onChange={handleOnChange}
           />
-        </label>
+        </div>
+
         <button
           type="submit"
-          className="bg-blue-400 border border-black p-2 mt-4"
+          className="bg-blue-400 border border-black p-3 mt-4 rounded-xl"
         >
           Submit
         </button>

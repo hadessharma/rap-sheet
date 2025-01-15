@@ -42,7 +42,7 @@ const InfractionForm: React.FC = () => {
         className="flex flex-col items-center space-y-4"
       >
         <div className="flex w-full items-center space-x-2">
-          <label className="text-right">Convict ID:</label>
+          <label className="text-right font-bold">Convict ID:</label>
           <input
             type="number"
             name="convictID"
@@ -52,7 +52,7 @@ const InfractionForm: React.FC = () => {
           ></input>
         </div>
         <div className="flex items-center justify-center space-x-2 w-full">
-          <label className="text-right">Type:</label>
+          <label className="text-right font-bold">Type:</label>
           <select
             onChange={handleTypeChange}
             value={type}
@@ -72,11 +72,11 @@ const InfractionForm: React.FC = () => {
           </select>
         </div>
         <div className="flex space-x-2 items-center w-full ">
-          <label className="text-right">Status:</label>
+          <label className="text-right font-bold">Status:</label>
           <select
             value={status}
             onChange={handleStatusChange}
-            className="border border-gray-500 rounded-xl grow p-3"
+            className="border border-gray-500 rounded-xl grow p-3 text-center"
           >
             <option value="">Select status</option>
             <option value="Served">Served</option>
@@ -84,7 +84,7 @@ const InfractionForm: React.FC = () => {
           </select>
         </div>
         <div>
-          <label>Date:</label>
+          <label className="text-right font-bold">Date:</label>
           <input
             type="datetime-local"
             onChange={handleTimestampChange}
