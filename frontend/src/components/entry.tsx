@@ -21,7 +21,7 @@ const Entry: React.FC = () => {
   };
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col items-center border border-black p-4 rounded-xl">
+      <div className="flex flex-col items-center border border-black p-4 rounded-xl ">
         <div>
           <label className="p-2 font-bold">Entry Type:</label>
           <select
