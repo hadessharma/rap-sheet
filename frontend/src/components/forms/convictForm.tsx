@@ -45,7 +45,7 @@ const ConvictForm: React.FC = () => {
 
         <button
           type="submit"
-          className="bg-blue-400 border border-black p-3 mt-4 rounded-xl"
+          className="bg-blue-400 border border-black px-3 py-2 mt-4 font-semibold rounded-xl"
         >
           Submit
         </button>

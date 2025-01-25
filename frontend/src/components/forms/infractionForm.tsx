@@ -93,7 +93,7 @@ const InfractionForm: React.FC = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-400 border border-black p-3 mt-4 rounded-xl"
+          className="bg-blue-400 border border-black px-3 py-2 font-semibold mt-4 rounded-xl"
         >
           Submit
         </button>
